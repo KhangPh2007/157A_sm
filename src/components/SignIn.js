@@ -54,21 +54,6 @@ export default function SignIn() {
   const [inputUsername, setInputUsername] = React.useState("");
   //Store value input for password:
   const [inputPassword, setInputPassword] = React.useState("");
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    setInputUsername(data.get("email"));
-    setInputPassword(data.get("password"));
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
-
-
-// For Signin
-const[verifySignIn, setVerifySignIn] = React.useState([]);
-
 
 // fetch db SignIn backend
 async function fetchSignin() {

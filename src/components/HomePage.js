@@ -79,6 +79,26 @@ const [openPublishBook, setOpenPublishBook] = React.useState(false);
 const handleOpenPublishBook = () => setOpenPublishBook(true);
 const handleClosePublishBook = () => setOpenPublishBook(false);
 
+// For add new Book
+const [inputaID, setInputaID] = React.useState("");
+const [inputTitle, setInputTitle] = React.useState("");
+const [inputISBN, setInputISBN] = React.useState("");
+const [inputPublishDate, setInputPublishDate] = React.useState("");
+const [inputPublishName, setInputPublishName] = React.useState("");
+const [inputAuthor, setInputAuthor] = React.useState("");
+
+
+// for submit book handle date
+const submitBook = () => {
+  if (inputaID === "") alert("No value aID");
+  if (inputTitle === "") alert("No value Title");
+  if (inputISBN === "") alert("No value ISBN");
+  if (inputPublishDate === "") alert("No value Publish Date");
+  if (inputPublishName === "") alert("No value Publish Name");
+  if (inputAuthor === "") alert("No value Author");
+  return;
+}
+
 const handleToggle = () => {
   setOpen((prevOpen) => !prevOpen);
 };
@@ -135,9 +155,10 @@ React.useEffect(() => {
   prevOpen.current = open;
 }, [open]);
 
-React.useEffect(() => {
-  fetchBook()
-}, []);
+//Call everytime at the beginning
+// React.useEffect(() => {
+//   fetchBook()
+// }, []);
 
 
 const submitNewBookForm = () =>{
@@ -150,60 +171,102 @@ const submitNewBookForm = () =>{
         alignItems: "center",
       }}
     >
-      <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-        <LockOutlinedIcon />
-      </Avatar>
       <Typography component="h1" variant="h5">
-        Sign in
+        Enter Book Information:
       </Typography>
       <Box
-        component="form"
         // onSubmit={handleSubmit}
         noValidate
         sx={{ mt: 1 }}
       >
         <TextField
-          // onChange={(changeEvent) => {
-          //   setInputUsername(changeEvent.target.value);
-          // }}
+          onChange={(changeEvent) => {
+            setInputaID(changeEvent.target.value);
+          }}
           margin="normal"
           required
           fullWidth
-          id="email"
-          label="Email Address"
-          name="email"
-          autoComplete="email"
-          autoFocus
+          id="aID"
+          label="aID"
+          name="aID"
+          value={inputaID}
         />
         <TextField
-          // onChange={(changeEvent) => {
-          //   setInputPassword(changeEvent.target.value);
-          // }}
+          onChange={(changeEvent) => {
+            setInputTitle(changeEvent.target.value);
+          }}
           margin="normal"
           required
           fullWidth
-          name="password"
-          label="Password"
-          type="password"
-          id="password"
-          autoComplete="current-password"
+          name="Title"
+          label="Title"
+          type="Title"
+          id="Title"
+          value={inputTitle}
         />
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" />}
-          label="Remember me"
+        <TextField
+          onChange={(changeEvent) => {
+            setInputISBN(changeEvent.target.value);
+          }}
+          margin="normal"
+          required
+          fullWidth
+          name="ISBN"
+          label="ISBN"
+          type="ISBN"
+          id="ISBN"
+          value={inputISBN}
+        />
+        <TextField
+          onChange={(changeEvent) => {
+            setInputPublishDate(changeEvent.target.value);
+          }}
+          margin="normal"
+          required
+          fullWidth
+          name="Publish-Date"
+          label="Publish-Date"
+          type="Publish-Date"
+          id="Publish-Date"
+          value={inputPublishDate}
+        />
+        <TextField
+          onChange={(changeEvent) => {
+            setInputPublishName(changeEvent.target.value);
+          }}
+          margin="normal"
+          required
+          fullWidth
+          name="Publish-Name"
+          label="Publish-Name"
+          type="Publish-Name"
+          id="Publish-Name"
+          value={inputPublishName}
+        />
+        <TextField
+          onChange={(changeEvent) => {
+            setInputAuthor(changeEvent.target.value);
+          }}
+          margin="normal"
+          required
+          fullWidth
+          name="Author"
+          label="Author"
+          type="Author"
+          id="Author"
+          value={inputAuthor}
         />
         <Button
-          // onClick={() => submitSignIn()}
+          // onClick={() => SubmitNewBookForm()}
           // type="submit"
           fullWidth
           variant="contained"
           sx={{ mt: 3, mb: 2 }}
         >
-          Sign In
+          Submit Book
         </Button>
         <Grid container>
-          <Grid item>
-          </Grid>
+          <Grid item></Grid>
         </Grid>
       </Box>
     </Box>
@@ -251,7 +314,7 @@ const card = (
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Add new Book
           </Typography>
-            {submitNewBookForm}
+            {submitNewBookForm()}
         </Box>
       </Modal>
 
